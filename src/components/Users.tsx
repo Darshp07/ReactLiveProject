@@ -52,80 +52,128 @@ function Users() {
     // }
 
     return (
-        <div className="container mt-5">
+        <div
+            style={{
+                minHeight: "100vh",
+                background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                padding: "40px"
+            }}
+        >
+            <div className="container">
 
-            <div className="row justify-content-center">
+                <div
+                    style={{
+                        background: "rgba(255,255,255,0.15)",
+                        backdropFilter: "blur(15px)",
+                        borderRadius: "25px",
+                        padding: "30px",
+                        boxShadow: "0 8px 32px rgba(0,0,0,0.2)"
+                    }}
+                >
+                    <h2
+                        style={{
+                            textAlign: "center",
+                            color: "white",
+                            marginBottom: "25px",
+                            fontWeight: "bold"
+                        }}
+                    >
+                        User Details 👨‍💻
+                    </h2>
 
-                <div className="col-md-10">
+                    <div className="table-responsive">
+                        <table
+                            className="table text-center"
+                            style={{
+                                backgroundColor: "rgba(255,255,255,0.9)",
+                                borderRadius: "15px",
+                                overflow: "hidden"
+                            }}
+                        >
+                            <thead
+                                style={{
+                                    background: "#1f2937",
+                                    color: "white"
+                                }}
+                            >
+                                <tr>
+                                    <th>Id</th>
+                                    <th>User Name</th>
+                                    <th>Email</th>
+                                    <th>Mobile</th>
+                                    <th>Created Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
 
-                    <div className="card shadow">
+                            <tbody>
+                                {users.map((user: any) => (
+                                    <tr key={user.id}>
+                                        <td>{user.id}</td>
+                                        <td>{user.username}</td>
+                                        <td>{user.email}</td>
+                                        <td>{user.mobile}</td>
+                                        <td>
+                                            {new Date(
+                                                user.created_date
+                                            ).toLocaleDateString()}
+                                        </td>
 
-                        <div className="card-header bg-primary text-white text-center">
-                            <h4>User Details</h4>
-                        </div>
+                                        <td>
+                                            <button
+                                                className="btn btn-warning me-2"
+                                                style={{
+                                                    borderRadius: "10px",
+                                                    fontWeight: "bold"
+                                                }}
+                                                onClick={() =>
+                                                    navigate("/updateUser", {
+                                                        state: user
+                                                    })
+                                                }
+                                            >
+                                                ✏️ Edit
+                                            </button>
 
-                        <div className="card-body">
-
-                            <table className="table table-bordered table-hover text-center">
-
-                                <thead className="table-dark">
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>User Name</th>
-                                        <th>email</th>
-                                        <th>mobile</th>
-                                        <th>created_date</th>
-                                        <th>Action</th>
+                                            <button
+                                                className="btn btn-danger"
+                                                style={{
+                                                    borderRadius: "10px",
+                                                    fontWeight: "bold"
+                                                }}
+                                                onClick={() =>
+                                                    deleteUser(user.id)
+                                                }
+                                            >
+                                                🗑 Delete
+                                            </button>
+                                        </td>
                                     </tr>
-                                </thead>
-
-                                <tbody>
-                                    {
-                                        users.map((user: any) => (
-                                            <tr key={user.id}>
-                                                <td>{user.id}</td>
-                                                <td>{user.username}</td>
-                                                <td>{user.email}</td>
-                                                <td>{user.mobile}</td>
-                                                <td>{user.created_date}</td>
-                                                <td>
-
-                                                    <button
-                                                        className="btn btn-warning btn-sm me-2"
-                                                        onClick={() =>
-                                                            navigate("/updateUser", {
-                                                                state: user
-                                                            })
-                                                        }
-                                                    >
-                                                        Edit
-                                                    </button>
-
-                                                    <button
-                                                        className="btn btn-danger btn-sm" onClick={() => deleteUser(user.id)}
-                                                    >
-                                                        <i className="bi bi-trash"></i>
-                                                    </button>
-
-                                                </td>
-                                            </tr>
-                                        ))
-                                    }
-                                </tbody>
-
-                            </table>
-
-                        </div>
-
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
-                    <button className="btn btn-secondary mt-3" onClick={() => window.history.back()}>Back</button>
                 </div>
 
+                <div className="text-center mt-4">
+                    <button
+                        className="btn btn-light"
+                        style={{
+                            borderRadius: "12px",
+                            fontWeight: "bold",
+                            padding: "10px 25px"
+                        }}
+                        onClick={() => window.history.back()}
+                    >
+                        ← Back
+                    </button>
+                </div>
+
+                <ToastContainer
+                    position="top-right"
+                    autoClose={2000}
+                />
             </div>
-            <ToastContainer
-                position="top-right"
-                autoClose={2000}
-            />
         </div>
     );
 }

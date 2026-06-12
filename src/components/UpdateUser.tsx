@@ -82,126 +82,231 @@ function UpdateUser() {
     };
 
     return (
-        <div className="container mt-5">
-            <div className="row justify-content-center">
-                <div className="col-md-7">
-                    <div className="card shadow" style={{ borderRadius: "30px" }}>
-                        <div className="card-header bg-success text-white text-center" style={{ borderRadius: "20px 30px 0 0" }}>
-                            <h4>Update User Details</h4>
-                        </div>
-                        <div className="card-body">
+        <div
+            style={{
+                minHeight: "100vh",
+                background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                padding: "20px"
+            }}
+        >
+            <div className="container">
+                <div className="row justify-content-center">
+                    <div className="col-md-6">
+
+                        <div
+                            style={{
+                                background: "rgba(255,255,255,0.15)",
+                                backdropFilter: "blur(15px)",
+                                borderRadius: "25px",
+                                padding: "35px",
+                                boxShadow: "0 8px 32px rgba(0,0,0,0.25)"
+                            }}
+                        >
+                            <h2
+                                style={{
+                                    textAlign: "center",
+                                    color: "#fff",
+                                    fontWeight: "bold",
+                                    marginBottom: "30px"
+                                }}
+                            >
+                                Update User Details
+                            </h2>
+
                             <form>
-                                <div className="form-group" style={{ marginBottom: "15px",borderRadius:"30px" }}>
-                                    <div className="container mt-3" style={{ backgroundColor: "#faf9fa", borderRadius: "30px", padding: "30px", border: "1px solid black" }}>
-                                        <div className="form-group" style={{ marginBottom: "15px" }}>
-                                            <label htmlFor="username">User Name:</label>
-                                            <input type="text"
-                                                placeholder="Enter Username"
-                                                style={{ width: "93%", padding: "5px" }}
-                                                value={username}
-                                                onChange={(e) => {
-                                                    setUsername(e.target.value);
-                                                }} />
-                                            {
-                                                userError &&
-                                                <small className="text-danger">
-                                                    {userError}
-                                                </small>
-                                            }
-                                        </div>
-                                        <div
-                                            className="form-group"
-                                            style={{
-                                                marginBottom: "15px",
-                                                position: "relative"
-                                            }}>
-                                            <label>Password:</label>
 
-                                            <input
-                                                type={showPassword ? "text" : "password"}
-                                                placeholder="Enter Password"
-                                                style={{ width: "93%", padding: "5px" }}
-                                                value={password}
-                                                onChange={(e) => {
-                                                    setPassword(e.target.value);
-                                                    setPasswordError("");
-                                                }}
-                                            />
+                                <div className="mb-3">
+                                    <label
+                                        style={{
+                                            color: "#fff",
+                                            fontWeight: "500"
+                                        }}
+                                    >
+                                        User Name
+                                    </label>
 
-                                            <span
-                                                style={{
-                                                    position: "absolute",
-                                                    right: "40px",
-                                                    top: "35px",
-                                                    cursor: "pointer"
-                                                }}
-                                                onClick={() =>
-                                                    setShowPassword(!showPassword)
-                                                }
-                                            >
-                                                <i
-                                                    className={
-                                                        showPassword
-                                                            ? "bi bi-eye-slash"
-                                                            : "bi bi-eye"
-                                                    }
-                                                ></i>
-                                            </span>
-                                            {passwordError && <small className="text-danger">{passwordError}</small>}
-                                        </div>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        placeholder="Enter Username"
+                                        value={username}
+                                        onChange={(e) => {
+                                            setUsername(e.target.value);
+                                            setUserError("");
+                                        }}
+                                        style={{
+                                            borderRadius: "10px",
+                                            padding: "12px"
+                                        }}
+                                    />
 
-                                        <div className="form-group" style={{ marginBottom: "15px" }}>
-                                            <label htmlFor="email">Email:</label><br />
-                                            <input type="email"
-                                                placeholder="Enter Email"
-                                                style={{ width: "93%", padding: "5px" }}
-                                                value={email}
-                                                onChange={(e) => {
-                                                    setEmail(e.target.value);
-                                                    setEmailError("");
-                                                }} />
-                                            {
-                                                emailError &&
-                                                <small className="text-danger">
-                                                    {emailError}
-                                                </small>
-                                            }
-                                        </div>
-                                        <div className="form-group" style={{ marginBottom: "15px" }}>
-                                            <label htmlFor="mobile">Mobile number:</label>
-                                            <input type="text"
-                                                placeholder="Enter Mobile Number"
-                                                style={{ width: "93%", padding: "5px" }}
-                                                value={mobile}
-                                                onChange={(e) => {
-                                                    setMobile(e.target.value);
-                                                    setMobileError("");
-                                                }} />
-                                            {
-                                                mobileError &&
-                                                <small className="text-danger">
-                                                    {mobileError}
-                                                </small>
-                                            }
-                                        </div>
-                                        <div style={{ textAlign: "center" }}>
-                                            <button type="button" onClick={UpdateUsers} className="btn btn-success mt-3">
-                                                Update
-                                            </button>
-                                        </div>
-
-                                    </div>
+                                    {userError && (
+                                        <small className="text-warning">
+                                            {userError}
+                                        </small>
+                                    )}
                                 </div>
+
+                                <div
+                                    className="mb-3"
+                                    style={{ position: "relative" }}
+                                >
+                                    <label
+                                        style={{
+                                            color: "#fff",
+                                            fontWeight: "500"
+                                        }}
+                                    >
+                                        Password
+                                    </label>
+
+                                    <input
+                                        type={showPassword ? "text" : "password"}
+                                        className="form-control"
+                                        placeholder="Enter Password"
+                                        value={password}
+                                        onChange={(e) => {
+                                            setPassword(e.target.value);
+                                            setPasswordError("");
+                                        }}
+                                        style={{
+                                            borderRadius: "10px",
+                                            padding: "12px"
+                                        }}
+                                    />
+
+                                    <span
+                                        style={{
+                                            position: "absolute",
+                                            right: "15px",
+                                            top: "45px",
+                                            cursor: "pointer"
+                                        }}
+                                        onClick={() =>
+                                            setShowPassword(!showPassword)
+                                        }
+                                    >
+                                        <i
+                                            className={
+                                                showPassword
+                                                    ? "bi bi-eye-slash-fill"
+                                                    : "bi bi-eye-fill"
+                                            }
+                                        ></i>
+                                    </span>
+
+                                    {passwordError && (
+                                        <small className="text-warning">
+                                            {passwordError}
+                                        </small>
+                                    )}
+                                </div>
+
+                                <div className="mb-3">
+                                    <label
+                                        style={{
+                                            color: "#fff",
+                                            fontWeight: "500"
+                                        }}
+                                    >
+                                        Email
+                                    </label>
+
+                                    <input
+                                        type="email"
+                                        className="form-control"
+                                        placeholder="Enter Email"
+                                        value={email}
+                                        onChange={(e) => {
+                                            setEmail(e.target.value);
+                                            setEmailError("");
+                                        }}
+                                        style={{
+                                            borderRadius: "10px",
+                                            padding: "12px"
+                                        }}
+                                    />
+
+                                    {emailError && (
+                                        <small className="text-warning">
+                                            {emailError}
+                                        </small>
+                                    )}
+                                </div>
+
+                                <div className="mb-4">
+                                    <label
+                                        style={{
+                                            color: "#fff",
+                                            fontWeight: "500"
+                                        }}
+                                    >
+                                        Mobile Number
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        placeholder="Enter Mobile Number"
+                                        value={mobile}
+                                        onChange={(e) => {
+                                            setMobile(e.target.value);
+                                            setMobileError("");
+                                        }}
+                                        style={{
+                                            borderRadius: "10px",
+                                            padding: "12px"
+                                        }}
+                                    />
+
+                                    {mobileError && (
+                                        <small className="text-warning">
+                                            {mobileError}
+                                        </small>
+                                    )}
+                                </div>
+
+                                <button
+                                    type="button"
+                                    onClick={UpdateUsers}
+                                    className="btn btn-success"
+                                    style={{
+                                        width: "100%",
+                                        borderRadius: "10px",
+                                        padding: "12px",
+                                        fontWeight: "bold",
+                                        marginBottom: "10px"
+                                    }}
+                                >
+                                    Update User
+                                </button>
+
+                                <button
+                                    type="button"
+                                    className="btn btn-outline-light"
+                                    onClick={() => window.history.back()}
+                                    style={{
+                                        width: "100%",
+                                        borderRadius: "10px",
+                                        padding: "12px"
+                                    }}
+                                >
+                                    Back
+                                </button>
+
                             </form>
-                            
                         </div>
+
+                        <ToastContainer
+                            position="top-right"
+                            autoClose={2000}
+                        />
+
                     </div>
-                         <button className="btn btn-secondary mt-3" onClick={() => window.history.back()}>Back</button>
                 </div>
-                <ToastContainer
-                    position="top-right"
-                    autoClose={2000}
-                />
             </div>
         </div>
     );

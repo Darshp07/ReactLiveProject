@@ -52,101 +52,165 @@ function Login() {
         }
     };
     return (
-        <div className="container mt-5">
-            <div className="row justify-content-center">
-                <div className="col-md-4">
-                    <form className="max-w-sm mx-auto">
-                        <div
-                            style={{
-                                width: "400px",
-                                backgroundColor: "#faf9fa",
-                                borderRadius: "40px",
-                                padding: "20px",
-                                margin: "1px auto"
-                            }}
-                        >
-                            <h4 style={{ textAlign: "center" }}>Login Form</h4>
+        <div
+            style={{
+                minHeight: "100vh",
+                background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center"
+            }}
+        >
+            <div
+                style={{
+                    width: "420px",
+                    background: "rgba(255, 255, 255, 0.15)",
+                    backdropFilter: "blur(15px)",
+                    borderRadius: "25px",
+                    padding: "35px",
+                    boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
+                    color: "white"
+                }}
+            >
+                <h2
+                    style={{
+                        textAlign: "center",
+                        marginBottom: "30px",
+                        fontWeight: "bold"
+                    }}
+                >
+                    Welcome Back 👋
+                </h2>
 
-                            <div style={{ marginBottom: "25px" }}>
-                                <label>Username</label>
-                                <br />
-                                <input
-                                    type="text"
-                                    placeholder="Enter Username"
-                                    style={{ width: "80%", padding: "5px" }}
-                                    value={username}
-                                    onChange={(e) => {
-                                        setUsername(e.target.value);
-                                        setUserError("");
-                                    }}
-                                /><br />
-                                {
-                                    userError &&
-                                    <small className="text-danger">
-                                        {userError}
-                                    </small>
-                                }
-
-                            </div>
-
-                            <div style={{ marginBottom: "15px" }}>
-                                <label>Password</label>
-                                <br />
-                                <input
-                                    type={showPassword ? "text" : "password"}
-                                    placeholder="Enter Password"
-                                    style={{ width: "80%", padding: "5px" }}
-                                    value={password}
-                                    onChange={(e) => {
-                                        setPassword(e.target.value);
-                                        setPasswordError("");
-                                    }}
-                                /><br />
-                                {passwordError && <small className="text-danger">{passwordError}</small>}
-                            </div>
-                            <div className="form-redio mb-3">
-                                <input
-                                    className="form-check-input"
-                                    type="checkbox"
-                                    onChange={() => setShowPassword(!showPassword)}
-                                />
-
-                                <label className="form-check-label">
-                                    Show Password
-                                </label>
-                            </div>
-
-                            <div className="form-check mb-3">
-                                <input
-                                    className="form-check-input"
-                                    type="checkbox"
-                                />
-                                <label className="form-check-label">
-                                    Remember Me
-                                </label>
-                            </div>
-                            <div style={{ textAlign: "center" }}>
-                                <Button type="button" onClick={login} color="success">
-                                    Login
-                                </Button>
-                                <Button type="button" color="primary" onClick={() => navigate("/signUp")} style={{ marginLeft: "10px" }}>
-                                    Sign Up
-                                </Button>
-                            </div>
-
-                            <div className="text-center mt-3">
-                                <a href="#">
-                                    Forgot Password?
-                                </a>
-                            </div>
-                        </div>
-                    </form>
-                    <ToastContainer
-                        position="top-right"
-                        autoClose={2000}
+                <div style={{ marginBottom: "20px" }}>
+                    <label>Username</label>
+                    <input
+                        type="text"
+                        placeholder="Enter Username"
+                        value={username}
+                        onChange={(e) => {
+                            setUsername(e.target.value);
+                            setUserError("");
+                        }}
+                        style={{
+                            width: "100%",
+                            padding: "12px",
+                            borderRadius: "12px",
+                            border: "none",
+                            outline: "none",
+                            marginTop: "5px"
+                        }}
                     />
+                    {userError && (
+                        <small className="text-warning">
+                            {userError}
+                        </small>
+                    )}
+                </div>
+
+                <div style={{ marginBottom: "20px" }}>
+                    <label>Password</label>
+                    <input
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Enter Password"
+                        value={password}
+                        onChange={(e) => {
+                            setPassword(e.target.value);
+                            setPasswordError("");
+                        }}
+                        style={{
+                            width: "100%",
+                            padding: "12px",
+                            borderRadius: "12px",
+                            border: "none",
+                            outline: "none",
+                            marginTop: "5px"
+                        }}
+                    />
+                    {passwordError && (
+                        <small className="text-warning">
+                            {passwordError}
+                        </small>
+                    )}
+                </div>
+
+                <div className="form-check mb-3">
+                    <input
+                        className="form-check-input"
+                        type="checkbox"
+                        checked={showPassword}
+                        onChange={() =>
+                            setShowPassword(!showPassword)
+                        }
+                    />
+                    <label className="form-check-label">
+                        Show Password
+                    </label>
+                </div>
+
+                <div className="form-check mb-4">
+                    <input
+                        className="form-check-input"
+                        type="checkbox"
+                    />
+                    <label className="form-check-label">
+                        Remember Me
+                    </label>
+                </div>
+
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        gap: "10px"
+                    }}
+                >
+                    <Button
+                        type="button"
+                        onClick={login}
+                        style={{
+                            background: "#00c853",
+                            border: "none",
+                            borderRadius: "12px",
+                            width: "120px",
+                            fontWeight: "bold"
+                        }}
+                    >
+                        Login
+                    </Button>
+
+                    <Button
+                        type="button"
+                        onClick={() => navigate("/signUp")}
+                        style={{
+                            background: "#2979ff",
+                            border: "none",
+                            borderRadius: "12px",
+                            width: "120px",
+                            fontWeight: "bold"
+                        }}
+                    >
+                        Sign Up
+                    </Button>
+                </div>
+
+                <div className="text-center mt-4">
+                    <a
+                        href="#"
+                        style={{
+                            color: "white",
+                            textDecoration: "none"
+                        }}
+                    >
+                        Forgot Password?
+                    </a>
                 </div>
             </div>
+
+            <ToastContainer
+                position="top-right"
+                autoClose={2000}
+            />
         </div>
     );
 }
